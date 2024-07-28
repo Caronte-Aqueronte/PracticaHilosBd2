@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="773.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="usac.controllers.MenuPrincipalController">
+    <stylesheets>
+        <URL value="@/styles/menuprincipal.css" />
+    </stylesheets>
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Datos generales">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <MFXTextField fx:id="txtCantInit" floatMode="BORDER" floatingText="Cantidad inicial" prefWidth="300.0">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+            </MFXTextField>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="189.0" prefWidth="224.0" spacing="20.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label text="Hilo 1">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="txtIntervalo1" floatMode="BORDER" floatingText="Intervalo de ejecución" prefWidth="300.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtCantIncre" floatMode="BORDER" floatingText="Cantidad a incrementar" prefHeight="50.0" prefWidth="300.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtTiempoEje1" floatMode="BORDER" floatingText="Total tiempo en ejecución" prefHeight="50.0" prefWidth="300.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="252.0" spacing="20.0" HBox.hgrow="SOMETIMES">
+                     <children>
+                        <Label text="Hilo 2">
+                           <font>
+                              <Font name="Arial Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <MFXTextField fx:id="txtIntervalo2" floatMode="BORDER" floatingText="Intervalo de ejecución" prefWidth="300.0" VBox.vgrow="SOMETIMES">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtCantDecre" floatMode="BORDER" floatingText="Cantidad a decrementar" prefHeight="50.0" prefWidth="300.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                        <MFXTextField fx:id="txtTiempoEje2" floatMode="BORDER" floatingText="Total tiempo en ejecución" prefHeight="50.0" prefWidth="300.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </MFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <MFXButton buttonType="RAISED" depthLevel="LEVEL4" onAction="#iniciarEscenario" prefHeight="50.0" prefWidth="400.0" rippleColor="#00ff15" text="Iniciar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
