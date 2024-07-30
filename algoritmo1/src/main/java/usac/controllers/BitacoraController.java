@@ -54,7 +54,7 @@ public class BitacoraController implements Initializable {
     }
 
     public void init(IncrementThread incrementThread, DecrementThread decrementThread,
-            int valorInicial) {
+            double valorInicial) {
 
         this.labelIni.setText("Valor inicial: "
                 + String.valueOf(valorInicial)

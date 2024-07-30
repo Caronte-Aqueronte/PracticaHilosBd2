@@ -53,15 +53,15 @@ public class MenuPrincipalController implements Initializable {
     private void iniciarEscenario(ActionEvent event) {
         try {
             //datos para el primer hilo
-            int intervalo1 = Integer.parseInt(this.txtIntervalo1.getText());
-            int incremento = Integer.parseInt(this.txtCantIncre.getText());
-            int tiempoEje1 = Integer.parseInt(this.txtTiempoEje1.getText());
+            double intervalo1 = Double.parseDouble(this.txtIntervalo1.getText());
+            double incremento = Double.parseDouble(this.txtCantIncre.getText());
+            double tiempoEje1 = Double.parseDouble(this.txtTiempoEje1.getText());
             //datos segundo hilo
-            int intervalo2 = Integer.parseInt(this.txtIntervalo2.getText());
-            int decremento = Integer.parseInt(this.txtCantDecre.getText());
-            int tiempoEje2 = Integer.parseInt(this.txtTiempoEje2.getText());
+            double intervalo2 = Double.parseDouble(this.txtIntervalo2.getText());
+            double decremento = Double.parseDouble(this.txtCantDecre.getText());
+            double tiempoEje2 = Double.parseDouble(this.txtTiempoEje2.getText());
             //cantidad inicial
-            int cantidadInicial = Integer.parseInt(this.txtCantInit.getText());
+            double cantidadInicial = Double.parseDouble(this.txtCantInit.getText());
 
             MovimientoRepository repo = new MovimientoRepository();
             repo.setInitialValue(cantidadInicial); // Valor inicial

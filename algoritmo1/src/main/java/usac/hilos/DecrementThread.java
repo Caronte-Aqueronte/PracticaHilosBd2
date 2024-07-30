@@ -5,6 +5,8 @@
 package usac.hilos;
 
 import java.sql.SQLException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javafx.scene.control.TextArea;
 import usac.repositories.MovimientoRepository;
 
@@ -16,12 +18,12 @@ public class DecrementThread extends Thread {
 
     private final MovimientoRepository repo;
     private TextArea textArea;
-    private int decrement;
-    private long intervalSeconds;
-    private long durationSeconds;
+    private double decrement;
+    private double intervalSeconds;
+    private double durationSeconds;
 
-    public DecrementThread(MovimientoRepository dao, int decrement, long intervalSeconds, long durationSeconds) {
-        this.repo = dao;
+    public DecrementThread(MovimientoRepository repo, double decrement, double intervalSeconds, double durationSeconds) {
+        this.repo = repo;
         this.decrement = decrement;
         this.intervalSeconds = intervalSeconds;
         this.durationSeconds = durationSeconds;
@@ -29,49 +31,35 @@ public class DecrementThread extends Thread {
 
     @Override
     public void run() {
-        long endTime = System.currentTimeMillis() + durationSeconds * 1000;
+        double endTime = System.currentTimeMillis() + durationSeconds * 1000;
+        int contador = 1;
         while (System.currentTimeMillis() < endTime) {
             try {
                 boolean decrementValue = repo.decrementValue(decrement);
+                // Obtener la hora actual
+                LocalTime horaActual = LocalTime.now();
+
+                // Crear un formateador para la hora en formato HH:mm
+                DateTimeFormatter formateador = DateTimeFormatter.ofPattern("HH:mm:ss.SSS");
+
+                // Formatear la hora actual
+                String horaFormateada = horaActual.format(formateador);
                 //adjuntamos si se pudo o no hacer el update
                 if (decrementValue) {
                     this.textArea.setText(
-                            String.format("%s\n%s > He Decrementado el numero con exito",
-                                    this.textArea.getText(), System.currentTimeMillis()));
+                            String.format("%s\n%s) %s : He Decrementado el numero con exito",
+                                    this.textArea.getText(), contador, horaFormateada));
                 } else {
                     this.textArea.setText(
-                            String.format("%s\n%s > No he Decrementado el numero :(",
-                                    this.textArea.getText(), System.currentTimeMillis()));
+                            String.format("%s\n%s) %s : No he Decrementado el numero :(",
+                                    this.textArea.getText(), contador, horaFormateada));
                 }
-                Thread.sleep(intervalSeconds * 1000);
+                Thread.sleep((long) intervalSeconds * 1000);
             } catch (SQLException | InterruptedException e) {
                 e.printStackTrace();
             }
+            contador++;
         }
-    }
-
-    public int getDecrement() {
-        return decrement;
-    }
-
-    public void setDecrement(int decrement) {
-        this.decrement = decrement;
-    }
-
-    public long getIntervalSeconds() {
-        return intervalSeconds;
-    }
-
-    public void setIntervalSeconds(long intervalSeconds) {
-        this.intervalSeconds = intervalSeconds;
-    }
-
-    public long getDurationSeconds() {
-        return durationSeconds;
-    }
-
-    public void setDurationSeconds(long durationSeconds) {
-        this.durationSeconds = durationSeconds;
     }
 
     public TextArea getTextArea() {
@@ -80,6 +68,30 @@ public class DecrementThread extends Thread {
 
     public void setTextArea(TextArea textArea) {
         this.textArea = textArea;
+    }
+
+    public double getDecrement() {
+        return decrement;
+    }
+
+    public void setDecrement(double decrement) {
+        this.decrement = decrement;
+    }
+
+    public double getIntervalSeconds() {
+        return intervalSeconds;
+    }
+
+    public void setIntervalSeconds(double intervalSeconds) {
+        this.intervalSeconds = intervalSeconds;
+    }
+
+    public double getDurationSeconds() {
+        return durationSeconds;
+    }
+
+    public void setDurationSeconds(double durationSeconds) {
+        this.durationSeconds = durationSeconds;
     }
 
     public MovimientoRepository getRepo() {
